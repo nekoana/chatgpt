@@ -1,0 +1,166 @@
+url = "https://api.openai.com"
+port = 80
+
+[api.LIST_MODELS]
+# Response
+# {
+#   "data": [
+#     {
+#       "id": "model-id-0",
+#       "object": "model",
+#       "owned_by": "organization-owner",
+#       "permission": [...]
+#     },
+#     {
+#       "id": "model-id-1",
+#       "object": "model",
+#       "owned_by": "organization-owner",
+#       "permission": [...]
+#     },
+#     {
+#       "id": "model-id-2",
+#       "object": "model",
+#       "owned_by": "openai",
+#       "permission": [...]
+#     },
+#   ],
+#   "object": "list"
+# }
+name = "List models"
+method = "get"
+path = "/v1/models"
+
+[api.RETRIEVE_MODEL]
+# Response
+# {
+#   "id": "text-davinci-003",
+#   "object": "model",
+#   "owned_by": "openai",
+#   "permission": [...]
+# }
+name = "Retrieve model"
+method = "get"
+path = "/v1/models/{model}"
+
+[api.CREATE_COMPLETION]
+# Request
+# {
+#   "model": "text-davinci-003",
+#   "prompt": "Say this is a test",
+#   "max_tokens": 7,
+#   "temperature": 0,
+#   "top_p": 1,
+#   "n": 1,
+#   "stream": false,
+#   "logprobs": null,
+#   "stop": "\n"
+# }
+# Response
+# {
+#   "id": "cmpl-uqkvlQyYK7bGYrRHQ0eXlWi7",
+#   "object": "text_completion",
+#   "created": 1589478378,
+#   "model": "text-davinci-003",
+#   "choices": [
+#     {
+#       "text": "\n\nThis is indeed a test",
+#       "index": 0,
+#       "logprobs": null,
+#       "finish_reason": "length"
+#     }
+#   ],
+#   "usage": {
+#     "prompt_tokens": 5,
+#     "completion_tokens": 7,
+#     "total_tokens": 12
+#   }
+# }
+name = "Create completion"
+method = "post"
+path = "/v1/completions"
+
+[api.CREATE_CHAT_COMPLETION]
+# Request
+# {
+#   "model": "gpt-3.5-turbo",
+#   "messages": [{"role": "user", "content": "Hello!"}]
+# }
+# Response
+# {
+#   "id": "chatcmpl-123",
+#   "object": "chat.completion",
+#   "created": 1677652288,
+#   "choices": [{
+#     "index": 0,
+#     "message": {
+#       "role": "assistant",
+#       "content": "\n\nHello there, how may I assist you today?",
+#     },
+#     "finish_reason": "stop"
+#   }],
+#   "usage": {
+#     "prompt_tokens": 9,
+#     "completion_tokens": 12,
+#     "total_tokens": 21
+#   }
+# }
+name = "Create chat completion"
+method = "post"
+path = "/v1/chat/completions"
+
+[api.CREATE_EDIT]
+# Request
+# {
+#   "model": "text-davinci-edit-001",
+#   "input": "What day of the wek is it?",
+#   "instruction": "Fix the spelling mistakes",
+# }
+# Response
+# {
+#   "object": "edit",
+#   "created": 1589478378,
+#   "choices": [
+#     {
+#       "text": "What day of the week is it?",
+#       "index": 0,
+#     }
+#   ],
+#   "usage": {
+#     "prompt_tokens": 25,
+#     "completion_tokens": 32,
+#     "total_tokens": 57
+#   }
+# }
+name = "Create edit"
+method = "post"
+path = "/v1/edits"
+
+[api.CREATE_IMAGE]
+# Request
+# {
+#   "prompt": "A cute baby sea otter",
+#   "n": 2,
+#   "size": "1024x1024"
+# }
+# Response
+# {
+#   "created": 1589478378,
+#   "data": [
+#     {
+#       "url": "https://..."
+#     },
+#     {
+#       "url": "https://..."
+#     }
+#   ]
+# }
+
+
+name = "Create Image"
+method = "post"
+path = "/v1/images/generations"
+
+[api.CREATE_IMAGE_EDIT]
+name = "Create image edit"
+method = "post"
+path = "/v1/images/edits"
