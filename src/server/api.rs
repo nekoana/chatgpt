@@ -19,7 +19,7 @@ impl ApiKey {
 
         let url = match self {
             ApiKey::RetrieveModel(model) => {
-                let path = api.path.replace("{model}", &model);
+                let path = api.path.replace("{model}", model);
                 format!("{}{}", base_url, path)
             }
             _ => format!("{}{}", base_url, api.path),
@@ -52,7 +52,7 @@ impl Server {
         let api = self
             .api
             .get(&api_key.key())
-            .expect(format!("api not found: {:?}", api_key).as_str());
+            .unwrap_or_else(|| panic!("api not found: {:?}", api_key));
 
         Ok(api)
     }

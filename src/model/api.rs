@@ -52,19 +52,6 @@ pub struct Api {
     pub path: String,
 }
 
-#[cfg(test)]
-mod test {
-    use std::fs;
-
-    #[test]
-    fn test_parse_api_file() {
-        let file = fs::read_to_string("./api.toml").unwrap();
-        let server: super::Server = toml::from_str(&file).unwrap();
-
-        println!("{:#?}", server);
-    }
-}
-
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum Method {
@@ -73,3 +60,4 @@ pub enum Method {
     Put,
     Delete,
 }
+

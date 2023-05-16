@@ -1,7 +1,5 @@
 use serde_derive::{Deserialize, Serialize};
 
-pub const MAX_TOKEN: u32 = 2048;
-
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Request {
     pub model: String,
