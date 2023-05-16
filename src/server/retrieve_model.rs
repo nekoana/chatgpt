@@ -4,18 +4,12 @@ use crate::{
 };
 
 pub trait RetrieveModel {
-    async fn retrieve_model(
-        &self,
-        model: &str,
-    ) -> Result<crate::model::retrieve_model::Response>;
+    async fn retrieve_model(&self, model: &str) -> Result<crate::model::retrieve_model::Response>;
 }
 
 impl RetrieveModel for Server {
-    async fn retrieve_model(
-        &self,
-        model: &str,
-    ) -> Result<crate::model::retrieve_model::Response> {
-        let api_key = ApiKey::RETRIEVE_MODEL(model.to_string());
+    async fn retrieve_model(&self, model: &str) -> Result<crate::model::retrieve_model::Response> {
+        let api_key = ApiKey::RetrieveModel(model.to_string());
 
         let request = self.build_request(&api_key)?;
 

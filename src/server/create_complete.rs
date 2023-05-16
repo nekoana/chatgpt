@@ -11,7 +11,7 @@ pub trait CreateComplete {
 
 impl CreateComplete for Server {
     async fn create_complete(&self, request: Request) -> Result<Response> {
-        let request = self.build_request(&ApiKey::CREATE_COMPLETION(request))?;
+        let request = self.build_request(&ApiKey::CreateCompletion(request))?;
 
         let response = request.send().await?.json::<Response>().await?;
 

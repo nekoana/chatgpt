@@ -1,4 +1,3 @@
-use crate::Result;
 use serde_derive::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -35,8 +34,7 @@ pub struct Response {
 #[cfg(test)]
 mod test {
     use crate::model::list_models::Response;
-
-    use super::*;
+    use crate::Result;
 
     #[tokio::test]
     async fn test_get_list_models() -> Result<()> {

@@ -3,10 +3,7 @@ use std::path::Path;
 use reqwest::RequestBuilder;
 
 use crate::{
-    model::{
-        self,
-        api::{Api, ApiKey, Key, Server},
-    },
+    model::api::{ApiKey, Server},
     Result,
 };
 
@@ -21,7 +18,7 @@ impl ApiKey {
         let api = server.get_api(&self)?;
 
         let url = match self {
-            ApiKey::RETRIEVE_MODEL(model) => {
+            ApiKey::RetrieveModel(model) => {
                 let path = api.path.replace("{model}", &model);
                 format!("{}{}", base_url, path)
             }
@@ -29,15 +26,15 @@ impl ApiKey {
         };
 
         let builder = match api.method {
-            crate::http::Method::GET => client.get(url),
-            crate::http::Method::POST => client.post(url),
-            crate::http::Method::PUT => todo!(),
-            crate::http::Method::DELETE => todo!(),
+            crate::model::api::Method::Get => client.get(url),
+            crate::model::api::Method::Post => client.post(url),
+            crate::model::api::Method::Put => todo!(),
+            crate::model::api::Method::Delete => todo!(),
         };
 
         Ok(match self {
-            ApiKey::CREATE_CHAT_COMPLETION(request) => builder.json(request),
-            ApiKey::CREATE_COMPLETION(request) => builder.json(request),
+            ApiKey::CreateChatCompletion(request) => builder.json(request),
+            ApiKey::CreateCompletion(request) => builder.json(request),
             _ => builder,
         })
     }

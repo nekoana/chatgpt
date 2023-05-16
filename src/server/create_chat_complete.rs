@@ -9,7 +9,7 @@ pub trait CreateChatComplete {
 
 impl CreateChatComplete for Server {
     async fn create_chat_complete(&self, request: Request) -> Result<Response> {
-        let request = self.build_request(&ApiKey::CREATE_CHAT_COMPLETION(request))?;
+        let request = self.build_request(&ApiKey::CreateChatCompletion(request))?;
 
         let response = request.send().await?.json::<Response>().await?;
         Ok(response)

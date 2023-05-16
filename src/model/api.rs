@@ -2,40 +2,38 @@ use std::collections::HashMap;
 
 use serde_derive::{Deserialize, Serialize};
 
-use crate::http::Method;
-
 #[derive(Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum Key {
-    LIST_MODELS,
-    RETRIEVE_MODEL,
-    CREATE_COMPLETION,
-    CREATE_CHAT_COMPLETION,
-    CREATE_EDIT,
-    CREATE_IMAGE,
-    CREATE_IMAGE_EDIT,
+    ListModels,
+    RetrieveModel,
+    CreateCompletion,
+    CreateChatCompletion,
+    CreateEdit,
+    CreateImage,
+    CreateImageEdit,
 }
 
 #[derive(Debug)]
 pub enum ApiKey {
-    LIST_MODELS,
-    RETRIEVE_MODEL(String),
-    CREATE_COMPLETION(super::create_complete::Request),
-    CREATE_CHAT_COMPLETION(super::create_chat_complete::Request),
-    CREATE_EDIT,
-    CREATE_IMAGE,
-    CREATE_IMAGE_EDIT,
+    ListModels,
+    RetrieveModel(String),
+    CreateCompletion(super::create_complete::Request),
+    CreateChatCompletion(super::create_chat_complete::Request),
+    CreateEdit,
+    CreateImage,
+    CreateImageEdit,
 }
 
 impl ApiKey {
     pub fn key(&self) -> Key {
         match *self {
-            ApiKey::LIST_MODELS => Key::LIST_MODELS,
-            ApiKey::RETRIEVE_MODEL(_) => Key::RETRIEVE_MODEL,
-            ApiKey::CREATE_COMPLETION(_) => Key::CREATE_COMPLETION,
-            ApiKey::CREATE_CHAT_COMPLETION(_) => Key::CREATE_CHAT_COMPLETION,
-            ApiKey::CREATE_EDIT => Key::CREATE_EDIT,
-            ApiKey::CREATE_IMAGE => Key::CREATE_IMAGE,
-            ApiKey::CREATE_IMAGE_EDIT => Key::CREATE_IMAGE_EDIT,
+            ApiKey::ListModels => Key::ListModels,
+            ApiKey::RetrieveModel(_) => Key::RetrieveModel,
+            ApiKey::CreateCompletion(_) => Key::CreateCompletion,
+            ApiKey::CreateChatCompletion(_) => Key::CreateChatCompletion,
+            ApiKey::CreateEdit => Key::CreateEdit,
+            ApiKey::CreateImage => Key::CreateImage,
+            ApiKey::CreateImageEdit => Key::CreateImageEdit,
         }
     }
 }
@@ -65,4 +63,13 @@ mod test {
 
         println!("{:#?}", server);
     }
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum Method {
+    Get,
+    Post,
+    Put,
+    Delete,
 }

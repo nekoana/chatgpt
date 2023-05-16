@@ -1,5 +1,5 @@
 use crate::{
-    model::api::{Key, Server, ApiKey},
+    model::api::{ApiKey, Server},
     Result,
 };
 
@@ -9,7 +9,7 @@ pub trait ListModels {
 
 impl ListModels for Server {
     async fn list_models(&self) -> Result<crate::model::list_models::Response> {
-        let request = self.build_request(&ApiKey::LIST_MODELS)?;
+        let request = self.build_request(&ApiKey::ListModels)?;
 
         let models = request
             .send()

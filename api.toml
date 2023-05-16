@@ -1,7 +1,7 @@
 url = "https://api.openai.com"
 port = 80
 
-[api.LIST_MODELS]
+[api.ListModels]
 # Response
 # {
 #   "data": [
@@ -30,7 +30,7 @@ name = "List models"
 method = "get"
 path = "/v1/models"
 
-[api.RETRIEVE_MODEL]
+[api.RetrieveModel]
 # Response
 # {
 #   "id": "text-davinci-003",
@@ -42,7 +42,7 @@ name = "Retrieve model"
 method = "get"
 path = "/v1/models/{model}"
 
-[api.CREATE_COMPLETION]
+[api.CreateCompletion]
 # Request
 # {
 #   "model": "text-davinci-003",
@@ -79,7 +79,7 @@ name = "Create completion"
 method = "post"
 path = "/v1/completions"
 
-[api.CREATE_CHAT_COMPLETION]
+[api.CreateChatCompletion]
 # Request
 # {
 #   "model": "gpt-3.5-turbo",
@@ -108,7 +108,7 @@ name = "Create chat completion"
 method = "post"
 path = "/v1/chat/completions"
 
-[api.CREATE_EDIT]
+[api.CreateEdit]
 # Request
 # {
 #   "model": "text-davinci-edit-001",
@@ -135,7 +135,7 @@ name = "Create edit"
 method = "post"
 path = "/v1/edits"
 
-[api.CREATE_IMAGE]
+[api.CreateImage]
 # Request
 # {
 #   "prompt": "A cute baby sea otter",
@@ -160,7 +160,7 @@ name = "Create Image"
 method = "post"
 path = "/v1/images/generations"
 
-[api.CREATE_IMAGE_EDIT]
+[api.CreateImageEdit]
 name = "Create image edit"
 method = "post"
 path = "/v1/images/edits"

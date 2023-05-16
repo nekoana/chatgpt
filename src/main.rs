@@ -1,6 +1,4 @@
 #![feature(async_fn_in_trait)]
-
-mod http;
 mod model;
 mod server;
 
