@@ -1,5 +1,5 @@
 use crate::model::api::{ApiKey, Server};
-use crate::model::create_chat_complete::Message;
+
 use crate::model::create_chat_complete::Request;
 use crate::model::create_chat_complete::Response;
 use crate::Result;
@@ -18,6 +18,8 @@ impl CreateChatComplete for Server {
 
 #[cfg(test)]
 mod test {
+    use crate::model::create_chat_complete::Message;
+
     use super::*;
 
     #[tokio::test]

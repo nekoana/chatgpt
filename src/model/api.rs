@@ -19,7 +19,7 @@ pub enum Key {
 pub enum ApiKey {
     LIST_MODELS,
     RETRIEVE_MODEL(String),
-    CREATE_COMPLETION,
+    CREATE_COMPLETION(super::create_complete::Request),
     CREATE_CHAT_COMPLETION(super::create_chat_complete::Request),
     CREATE_EDIT,
     CREATE_IMAGE,
@@ -31,7 +31,7 @@ impl ApiKey {
         match *self {
             ApiKey::LIST_MODELS => Key::LIST_MODELS,
             ApiKey::RETRIEVE_MODEL(_) => Key::RETRIEVE_MODEL,
-            ApiKey::CREATE_COMPLETION => Key::CREATE_COMPLETION,
+            ApiKey::CREATE_COMPLETION(_) => Key::CREATE_COMPLETION,
             ApiKey::CREATE_CHAT_COMPLETION(_) => Key::CREATE_CHAT_COMPLETION,
             ApiKey::CREATE_EDIT => Key::CREATE_EDIT,
             ApiKey::CREATE_IMAGE => Key::CREATE_IMAGE,

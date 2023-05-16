@@ -37,6 +37,7 @@ impl ApiKey {
 
         Ok(match self {
             ApiKey::CREATE_CHAT_COMPLETION(request) => builder.json(request),
+            ApiKey::CREATE_COMPLETION(request) => builder.json(request),
             _ => builder,
         })
     }
