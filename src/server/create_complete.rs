@@ -1,8 +1,8 @@
 use serde_derive::{Deserialize, Serialize};
 
-use crate::Result;
 use crate::server::api::api_key::ApiKey;
 use crate::server::Server;
+use crate::Result;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Request {
@@ -47,7 +47,6 @@ pub struct Usage {
     pub total_tokens: u32,
 }
 
-
 pub trait CreateComplete {
     async fn create_complete(&self, request: Request) -> Result<Response>;
 }
@@ -64,9 +63,10 @@ impl CreateComplete for Server {
 
 #[cfg(test)]
 mod test {
-    use crate::{server::create_complete::Request, Result, server::create_complete::CreateComplete};
     use crate::server::Server;
-    
+    use crate::{
+        server::create_complete::CreateComplete, server::create_complete::Request, Result,
+    };
 
     #[tokio::test]
     async fn test_create_complete() -> Result<()> {

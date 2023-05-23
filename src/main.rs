@@ -1,7 +1,8 @@
 #![feature(async_fn_in_trait)]
 
-use clap::Parser;
 use std::path::PathBuf;
+
+use clap::Parser;
 
 pub mod server;
 
@@ -24,9 +25,10 @@ struct Cli {
 
 #[tokio::main]
 async fn main() {
-    let cli = Cli::parse();
+    let _cli = Cli::parse();
 }
 
+#[allow(dead_code)]
 fn auth() -> Result<String> {
     let key = env!("ENV_CHATGPT_AUTH_KEY");
 
