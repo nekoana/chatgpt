@@ -1,8 +1,14 @@
-use crate::{
-    model::api::{ApiKey, Server},
-    Result,
-};
-use crate::model::list_models::Response;
+use serde_derive::{Deserialize, Serialize};
+
+use crate::server::api::api_key::ApiKey;
+use crate::server::Server;
+use crate::Result;
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Response {
+    pub data: Vec<super::retrieve_model::Response>,
+    pub object: String,
+}
 
 pub trait ListModels {
     async fn list_models(&self) -> Result<Response>;

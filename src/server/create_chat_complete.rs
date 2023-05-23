@@ -1,8 +1,45 @@
-use crate::model::api::{ApiKey, Server};
+use serde_derive::{Deserialize, Serialize};
 
-use crate::model::create_chat_complete::Request;
-use crate::model::create_chat_complete::Response;
 use crate::Result;
+use crate::server::api::api_key::ApiKey;
+use crate::server::Server;
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Request {
+    pub model: String,
+    pub messages: Vec<Message>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Message {
+    pub role: String,
+    pub content: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Response {
+    pub id: String,
+    pub object: String,
+    pub created: u32,
+    pub choices: Vec<Choice>,
+    pub usage: Usage,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Choice {
+    pub index: u32,
+    pub message: Message,
+    pub finish_reason: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Usage {
+    pub prompt_tokens: u32,
+    pub completion_tokens: u32,
+    pub total_tokens: u32,
+}
+
+
 pub trait CreateChatComplete {
     async fn create_chat_complete(&self, request: Request) -> Result<Response>;
 }
@@ -18,8 +55,6 @@ impl CreateChatComplete for Server {
 
 #[cfg(test)]
 mod test {
-    use crate::model::create_chat_complete::Message;
-
     use super::*;
 
     #[tokio::test]

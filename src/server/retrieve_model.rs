@@ -1,8 +1,35 @@
-use crate::{
-    model::api::{ApiKey, Server},
-    Result,
-};
-use crate::model::retrieve_model::Response;
+use serde_derive::{Deserialize, Serialize};
+
+use crate::Result;
+use crate::server::api::api_key::ApiKey;
+use crate::server::Server;
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Response {
+    pub id: String,
+    pub object: String,
+    pub created: u32,
+    pub owned_by: String,
+    pub permission: Vec<Permission>,
+    pub root: String,
+    pub parent: Option<String>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Permission {
+    pub id: String,
+    pub object: String,
+    pub created: u32,
+    pub allow_create_engine: bool,
+    pub allow_sampling: bool,
+    pub allow_logprobs: bool,
+    pub allow_search_indices: bool,
+    pub allow_view: bool,
+    pub allow_fine_tuning: bool,
+    pub organization: String,
+    pub group: Option<String>,
+    pub is_blocking: bool,
+}
 
 pub trait RetrieveModel {
     async fn retrieve_model(&self, model: &str) -> Result<Response>;

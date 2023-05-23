@@ -1,5 +1,6 @@
+#key = ""
+#proxy = ""
 url = "https://api.openai.com"
-port = 80
 
 [api.ListModels]
 # Response
