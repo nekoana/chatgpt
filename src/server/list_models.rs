@@ -30,7 +30,7 @@ mod test {
 
     #[tokio::test]
     async fn test_request_list_models() -> Result<()> {
-        let server = Server::load_server("./api.toml").await?;
+        let server = Server::load("./api.toml").await?;
 
         let models = server.list_models().await?;
 

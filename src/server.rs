@@ -23,7 +23,7 @@ pub struct Server {
 }
 
 impl Server {
-    pub async fn load_server(path: impl AsRef<Path>) -> Result<Server> {
+    pub async fn load(path: impl AsRef<Path>) -> Result<Server> {
         let config = tokio::fs::read_to_string(path).await?;
         let mut server = toml::from_str::<Server>(&config)?;
 

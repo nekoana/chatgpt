@@ -59,7 +59,7 @@ mod test {
 
     #[tokio::test]
     async fn test_create_chat_complete() -> Result<()> {
-        let server = Server::load_server("./api.toml").await?;
+        let server = Server::load("./api.toml").await?;
 
         let response = server
             .create_chat_complete(Request {

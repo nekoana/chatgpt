@@ -53,7 +53,7 @@ mod test {
 
     #[tokio::test]
     async fn test_retrieve_model() -> Result<()> {
-        let server = Server::load_server("./api.toml").await?;
+        let server = Server::load("./api.toml").await?;
 
         let model = server.retrieve_model("text-curie:001").await?;
 

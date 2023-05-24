@@ -70,7 +70,7 @@ mod test {
 
     #[tokio::test]
     async fn test_create_complete() -> Result<()> {
-        let server = Server::load_server("./api.toml").await?;
+        let server = Server::load("./api.toml").await?;
 
         let request = Request {
             model: "text-davinci-003".to_string(),

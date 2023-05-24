@@ -1,9 +1,9 @@
 use reqwest::RequestBuilder;
 
-use crate::Result;
 use crate::server::api::key::Key;
 use crate::server::api::Method;
 use crate::server::Server;
+use crate::Result;
 
 #[derive(Debug)]
 pub enum ApiKey {
@@ -32,13 +32,18 @@ impl ApiKey {
 
 impl ApiKey {
     pub(crate) fn build_request(&self, server: &Server) -> Result<RequestBuilder> {
-        let proxy = reqwest::Proxy::all("http://127.0.0.1:33210")?;
+        let mut builder = reqwest::Client::builder();
 
-        let client = reqwest::Client::builder().proxy(proxy).build()?;
+        if let Some(ref p) = server.proxy {
+            let proxy = reqwest::Proxy::all(p)?;
+            builder = builder.proxy(proxy);
+        }
+
+        let client = builder.build()?;
 
         let base_url = &server.url;
 
-        let api = server.get_api(&self)?;
+        let api = server.get_api(self)?;
 
         let url = match self {
             ApiKey::RetrieveModel(model) => {
